@@ -1,4 +1,4 @@
-const validateId = (id) => id.match(/\/w+/) && id.length > 10;
+const validateId = (id) => id.match(/\w+/) && id.length > 10;
 
 const validatePerson = (person) =>
   person.id && person.name && !isNaN(person.age) && Array.isArray(person.hobbies);
