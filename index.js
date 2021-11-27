@@ -1,9 +1,10 @@
-const { asd } = require('./src/controller');
-const fs = require('fs');
+const http = require('http');
+const { router } = require('./src/router');
 
 const PORT = process.env.PORT || 8080;
 
-const id = Math.random().toString(16).substring(2);
+const server = http.createServer(router);
 
-asd();
-console.log(`not listening to port ${PORT}`);
+server.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}`);
+});
