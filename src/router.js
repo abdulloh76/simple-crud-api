@@ -10,13 +10,16 @@ const router = (req, res) => {
   if (req.method === 'GET' && req.url.match(/\/person\/?$/)) {
     getPeople(req, res);
   } else if (req.method === 'GET' && req.url.match(`/person/${uuidRegex}\/?$`)) {
-    getPerson(req, res, req.url.split('/')[2]);
-  } else if (req.method === 'POST' && req.url.match(`/person/${uuidRegex}\/?$`)) {
+    const splitUrl = req.url.split('/');
+    getPerson(req, res, splitUrl[splitUrl.length - 1]);
+  } else if (req.method === 'POST' && req.url.match(/\/person\/?$/)) {
     postPerson(req, res);
   } else if (req.method === 'PUT' && req.url.match(`/person/${uuidRegex}\/?$`)) {
-    updatePerson(req, res, req.url.split('/')[2]);
+    const splitUrl = req.url.split('/');
+    updatePerson(req, res, splitUrl[splitUrl.length - 1]);
   } else if (req.method === 'DELETE' && req.url.match(`/person/${uuidRegex}\/?$`)) {
-    deletePerson(req, res, req.url.split('/')[2]);
+    const splitUrl = req.url.split('/');
+    deletePerson(req, res, splitUrl[splitUrl.length - 1]);
   } else {
     noResponse(req, res);
   }
