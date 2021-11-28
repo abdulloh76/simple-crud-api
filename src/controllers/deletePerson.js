@@ -1,8 +1,8 @@
 const Person = require('../models/Person');
-const { messageObj } = require('../utils');
+const { messageObj, requestHandlerWrapper } = require('../utils');
 const { validate } = require('uuid');
 
-const deletePerson = (req, res, id) => {
+const deletePerson = requestHandlerWrapper(async (req, res, id) => {
   if (validate(id)) {
     Person.remove(id)
       .then(() => {
@@ -16,6 +16,6 @@ const deletePerson = (req, res, id) => {
     res.writeHead(400, { 'Content-type': 'application/json' });
     res.end(JSON.stringify(messageObj('id is invalid')));
   }
-};
+});
 
 module.exports = { deletePerson };

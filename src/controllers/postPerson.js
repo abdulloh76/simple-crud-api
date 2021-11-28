@@ -1,7 +1,7 @@
 const Person = require('../models/Person');
-const { validatePerson, messageObj } = require('../utils');
+const { validatePerson, messageObj, requestHandlerWrapper } = require('../utils');
 
-const postPerson = async (req, res) => {
+const postPerson = requestHandlerWrapper(async (req, res) => {
   let body = '';
 
   req.on('data', (chunk) => {
@@ -25,6 +25,6 @@ const postPerson = async (req, res) => {
       res.end(JSON.stringify(messageObj(e.message)));
     }
   });
-};
+});
 
 module.exports = { postPerson };

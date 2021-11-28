@@ -1,8 +1,8 @@
 const Person = require('../models/Person');
-const { messageObj } = require('../utils');
+const { messageObj, requestHandlerWrapper } = require('../utils');
 const { validate } = require('uuid');
 
-const updatePerson = (req, res, id) => {
+const updatePerson = requestHandlerWrapper(async (req, res, id) => {
   let body = '';
 
   req.on('data', (chunk) => {
@@ -26,6 +26,6 @@ const updatePerson = (req, res, id) => {
       res.end(JSON.stringify(messageObj('id is invalid')));
     }
   });
-};
+});
 
 module.exports = { updatePerson };
