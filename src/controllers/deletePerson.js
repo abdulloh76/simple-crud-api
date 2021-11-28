@@ -7,6 +7,7 @@ const deletePerson = requestHandlerWrapper(async (req, res, id) => {
     Person.remove(id)
       .then(() => {
         res.writeHead(204, { 'Content-type': 'application/json' });
+        res.end();
       })
       .catch((e) => {
         res.writeHead(404, { 'Content-type': 'application/json' });
