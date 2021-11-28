@@ -29,6 +29,26 @@ describe('when requesting to /person with POST method', () => {
     const createPersonObj = await request(server).post('/person').send(mockPerson);
     const allPeople = await request(server).get('/person');
     expect(createPersonObj.statusCode).toBe(201);
-    expect(allPeople.body.pop()).toMatchObject(mockPerson);
+    expect(allPeople.body).toEqual(expect.arrayContaining([createPersonObj.body]));
+  });
+});
+
+describe('when requesting to /person with PUT method', () => {
+  test('should update one of existing person object', async () => {
+    const newObj = await request(server).post('/person').send(mockPerson);
+    const updatingObj = await request(server).put(`/person/${newObj.body.id}`).send({ age: 45 });
+    const allPeople = await request(server).get('/person');
+    expect(updatingObj.statusCode).toBe(200);
+    expect(allPeople.body).toEqual(expect.arrayContaining([updatingObj.body]));
+  });
+});
+
+describe('when requesting to /person with DELETE method', () => {
+  test('should delete one of existing person object', async () => {
+    const newObj = await request(server).post('/person').send(mockPerson);
+    const deletingObj = await request(server).delete(`/person/${newObj.body.id}`);
+    const allPeople = await request(server).get('/person');
+    expect(deletingObj.statusCode).toBe(204);
+    expect(allPeople.body).not.toEqual(expect.arrayContaining([deletingObj.body]));
   });
 });
