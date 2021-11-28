@@ -1,4 +1,5 @@
 const people = require('./people');
+const { v4 } = require('uuid');
 
 const findAll = () => new Promise((res, rej) => res(people));
 
@@ -11,8 +12,7 @@ const findById = (id) =>
 
 const add = (person) =>
   new Promise((res, rej) => {
-    const id = Math.random().toString(16).substring(2);
-    person.id = id;
+    person.id = v4();
     people.push(person);
     res(person);
   });

@@ -1,5 +1,6 @@
 const Person = require('../models/Person');
-const { validateId, messageObj } = require('../utils');
+const { messageObj } = require('../utils');
+const { validate } = require('uuid');
 
 const updatePerson = (req, res, id) => {
   let body = '';
@@ -10,7 +11,7 @@ const updatePerson = (req, res, id) => {
 
   req.on('end', () => {
     const updatingInfo = JSON.parse(body);
-    if (validateId(id)) {
+    if (validate(id)) {
       Person.update(id, updatingInfo)
         .then((updatedPerson) => {
           res.writeHead(200, { 'Content-type': 'application/json' });

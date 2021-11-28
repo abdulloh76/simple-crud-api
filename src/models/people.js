@@ -1,27 +1,21 @@
 const people = [
   {
-    id: 'e1fc3990a29cc8',
-    name: 'John',
-    age: 21,
-    hobbies: ['football', 'volleyball', 'books'],
-  },
-  {
-    id: '7caa10640f0118',
-    name: 'Sarah',
-    age: 32,
-    hobbies: ['movies', 'books'],
-  },
-  {
-    id: '7fac95e026953',
-    name: 'Robert',
-    age: 45,
-    hobbies: ['tv series', 'books'],
-  },
-  {
-    id: 'd5f76160303ed8',
-    name: 'Peter',
+    id: 'd90574b3-d905-4388-ac38-25d18316877c',
+    name: 'Sherlock',
     age: 35,
-    hobbies: ['football', 'talk'],
+    hobbies: ['problem solving', 'playing violin'],
+  },
+  {
+    id: 'a8b34dd9-cd21-4037-b98a-da136f85311d',
+    name: 'Gregory',
+    age: 48,
+    hobbies: ['tv series', 'books', 'riddles'],
+  },
+  {
+    id: 'e61953ce-e816-4838-875d-4c850f2ce0a2',
+    name: 'Henry',
+    age: 37,
+    hobbies: ['solving puzzles', 'books'],
   },
 ];
 

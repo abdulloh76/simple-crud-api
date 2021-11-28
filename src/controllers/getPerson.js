@@ -1,8 +1,9 @@
 const Person = require('../models/Person');
-const { validateId, messageObj } = require('../utils');
+const { messageObj } = require('../utils');
+const { validate } = require('uuid');
 
 const getPerson = async (req, res, id) => {
-  if (validateId(id)) {
+  if (validate(id)) {
     Person.findById(id)
       .then((person) => {
         res.writeHead(200, { 'Content-type': 'application/json' });

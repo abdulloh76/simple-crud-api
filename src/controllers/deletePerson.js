@@ -1,8 +1,9 @@
 const Person = require('../models/Person');
-const { validateId, messageObj } = require('../utils');
+const { messageObj } = require('../utils');
+const { validate } = require('uuid');
 
 const deletePerson = (req, res, id) => {
-  if (validateId(id)) {
+  if (validate(id)) {
     Person.remove(id)
       .then(() => {
         res.writeHead(204, { 'Content-type': 'application/json' });
